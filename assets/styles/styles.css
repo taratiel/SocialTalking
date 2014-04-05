@@ -1,0 +1,106 @@
+#content {
+	height: 100%;
+}
+
+#structure {
+	height: 100%;
+}
+
+#inner-structure {
+	height: 100%;
+}
+
+#inner-structure .off-canvas-wrap {
+	overflow: hidden;
+}
+
+#inner-structure .off-canvas-wrap,
+#inner-structure .inner-wrap,
+#inner-structure .left-off-canvas-menu {
+	height: 100%;
+}
+
+/*Titulo del offcanvas*/
+#inner-structure .off-canvas-list li label {
+	background: #EEE;
+	border-top: inherit;
+	border-bottom: 1px solid #ddd;
+}
+
+/*Fondo del offcanvas*/
+#inner-structure .left-off-canvas-menu,
+#inner-structure .right-off-canvas-menu {
+	background: #EEE;
+}
+
+/*Margenes de los form dentro del offcanvas*/
+#inner-structure .left-off-canvas-menu form {
+	margin: 0 0.3rem 1rem 0.3rem;
+}
+
+/*Fondo y color de los legend*/
+#inner-structure .left-off-canvas-menu form legend {
+	color: #999;
+	background: inherit;
+}
+
+/*Altura de los combos*/
+#inner-structure .left-off-canvas-menu form select {
+	height: inherit;
+}
+
+#inner-structure .left-off-canvas-menu form .button {
+	width: 100%;
+}
+
+#inner-structure .left-off-canvas-menu form .button-group .active {
+	background: #007095;
+}
+
+#inner-structure .left-off-canvas-menu form .button-group a:hover {
+	background: #007095;
+}
+
+#inner-structure .left-off-canvas-menu form .button-group li {
+	width: 50%;
+	border-bottom: inherit;
+}
+
+/*Vista central*/
+#inner-structure .main-section {
+	height: 100%;
+	background: #EEE;
+}
+
+/*Chat*/
+.chat {
+	margin-top: 1rem;
+}
+
+/*Estilos para cada persona en la lista del chat*/
+.chat .persona {
+	margin-bottom: 0.5rem;
+}
+
+/*Estilos para la seccion de resultados*/
+.resultados {
+	margin-top: 1rem;
+}
+
+/*Estilos para los creditos en el footer*/
+.creditos {
+	color: #999;
+}
+
+/*Estilos del mapa con resultados*/
+.mapa {
+	margin: 1rem 0 1rem 0;
+	height: 300px;
+	width: 100%;
+}
+
+/**/
+.static_map {
+	width: 100%;
+	height: 150px;
+}

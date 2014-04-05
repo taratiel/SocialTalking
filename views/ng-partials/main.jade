@@ -1,0 +1,88 @@
+div#structure.row.collapse
+	div#inner-structure.large-12.medium-12.small-12.columns
+		div.off-canvas-wrap
+			div.inner-wrap
+				nav.tab-bar
+
+					section.left-small
+						a.left-off-canvas-toggle.menu-icon
+							span
+
+					section.middle.tab-bar-section
+						h1.title.text-center {{ "Social Talking v%VERSION%" | interpolate }}
+
+					section.right.small
+						a.right-off-canvas-toggle.menu-icon
+							span
+
+				aside.left-off-canvas-menu
+					ul.off-canvas-list
+						li.text-center
+							label Preferencias
+
+						form
+							fieldset
+								legend Personales
+
+								input(type="text" placeholder="Nombre" ng-model="me.nombre")
+
+								div Quiero practicar...
+								select(ng-options="key as value.name for (key, value) in langs", ng-model="me.lang")
+
+						form
+							fieldset
+								legend Mi posicion
+
+								input(type="text" placeholder="Direccion" ng-model="me.direccion" ng-change="buscar_mi_pos()" ng-show="!use_gps")
+								input(type="text" placeholder="GPS" ng-model="me.position.coordinates" ng-show="use_gps" ng-disabled="true")
+
+								googlemaps.static_map(options="static_map")
+
+								div.row.collapse
+									div.large-12.medium-12.small-12.columns
+										ul.button-group
+											li
+												div.tiny.button(ng-click="use_gps = false; buscar_mi_pos()" ng-class="{active: !use_gps}") Direccion
+											li
+												div.tiny.button(ng-click="use_gps = true; buscar_mi_pos()" ng-class="{active: use_gps}") GPS
+
+						form
+							div.small.button.expanded Guardar preferencias
+
+				aside.right-off-canvas-menu
+					ul.off-canvas-list
+						li.text-center
+							label Chat
+
+						li.chat
+							div.row.persona(ng-repeat="persona in personas_cercanas track by $index")
+								div.large-8.medium-8.small-8.columns.left
+									span {{ persona.nombre }}
+								div.large-4.medium-4.small-4.columns.right 
+									span {{ persona.distancia | distancia }}
+
+
+				section.main-section
+					div.row.collapse
+						div.large-12.medium-12.small-12.columns
+
+							div(ng-show="loading").text-center
+								p Cargando...
+
+							div(ng-show="!loading").resultados
+								div(ng-show="personas_cercanas.length == 0").text-center
+									label.alert.radius.label
+										| Por desgracia no hay personas cerca con las que practicar {{ langs[me.lang].name }}
+
+								div(ng-show="personas_cercanas.length > 0").text-center
+									div.success.radius.label
+										| Hemos encontrado {{ personas_cercanas.length }} personas con las que practicar {{ langs[me.lang].name }}!
+
+									div.row.collapse
+										div.large-12.medium-12.small-12.columns
+											gm-map(gm-map-id="'results_map'" gm-bounds="results_map.bounds" gm-map-options="results_map" class="mapa" autoh)
+												gm-markers(gm-objects="personas_cercanas" gm-id="object.uuid" gm-position="{lat: object.position.coordinates[0], lng: object.position.coordinates[1]}" gm-on-click="start_chat(object, marker)")
+
+					div.row.collapse
+						div.large-12.medium-12.small-12.columns.text-center
+							span.creditos Social Talking, 2014
